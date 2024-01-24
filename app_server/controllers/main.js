@@ -1,6 +1,11 @@
-/* GET homepage */
+const fs = require('fs');
+const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+const mainPage = JSON.parse(fs.readFileSync('app_server/data/index.json', 'utf8'));
+
+/* GET home page. */
 const index = (req, res) => {
-    res.render('index', { title: 'Travlr Getaways' });
+    pageTitle = packageJson.description + ' | Home';
+    res.render('index', { title: pageTitle, mainPage });
 };
 
 module.exports = {

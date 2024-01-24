@@ -1,12 +1,13 @@
-var fs = require('fs'); 
+const fs = require('fs');
+const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+const trips = JSON.parse(fs.readFileSync('app_server/data/trips.json', 'utf8'));
 
-var trips = JSON.parse(fs.readFileSync('./data/trips.json', 'utf8'));
+/* GET travel view. */
+const travel = (req, res) => {
+    pageTitle = packageJson.description + ' | Travel';
+    res.render('travel', { title: pageTitle, trips });
+};
 
-/* GET travel view */ 
-const travel = (req, res) => { 
-    res.render('travel', { title: 'Travlr Getaways', trips }); 
-}; 
-
-module.exports = { 
-    travel 
+module.exports = {
+    travel
 };
