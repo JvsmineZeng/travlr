@@ -1,13 +1,10 @@
-const fs = require('fs');
-const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
-const foods = JSON.parse(fs.readFileSync('app_server/data/meals.json', 'utf8'));
-
-/* GET meals view. */
+/* GET Meals View */
 const meals = (req, res) => {
-    pageTitle = packageJson.description + ' | Meals';
-    res.render('meals', { title: pageTitle, foods });
-};
-
-module.exports = {
-    meals
-};
+    pageTitle = process.env.npm_package_description + " - Meals"; // process.env.npm_package_description can only be accessed if you use 'npm start' *nodemon will not work
+    res.render("meals", { title: pageTitle });
+  };
+  
+  module.exports = {
+    meals,
+  };
+  
